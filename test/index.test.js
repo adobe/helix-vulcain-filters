@@ -15,7 +15,7 @@
 'use strict';
 
 const assert = require('assert');
-const { filter, match, wrapFields } = require('../src/index.js');
+const { filterFields, match, wrapFields } = require('../src/index.js');
 
 const example = {
   foo: {
@@ -32,21 +32,21 @@ const longexample = {
 
 describe('Filter Tests', () => {
   it('filter function passes', async () => {
-    const result = filter(example, [
+    const result = filterFields(example, [
       '/foo/*',
     ]);
     assert.deepEqual(result, example);
   });
 
   it('filter function filters', async () => {
-    const result = filter(longexample, [
+    const result = filterFields(longexample, [
       '/foo/bar',
     ]);
     assert.deepEqual(result, example);
   });
 
   it('filter function skips when no filter defined', () => {
-    assert.deepEqual(filter(example), example);
+    assert.deepEqual(filterFields(example), example);
   });
 });
 

@@ -13,7 +13,7 @@ const traverse = require('traverse');
 const pointer = require('json-pointer');
 const { match } = require('./match');
 
-function filter(obj, fields = []) {
+function filterFields(obj, fields = []) {
   if (fields.filter((exp) => exp === '*').length > 0 || fields.length === 0) {
     return obj; // nothing to filter for, we can skip
   }
@@ -42,10 +42,10 @@ function wrapFields(fn) {
     const retval = await fn(params);
     const fields = params && params.__ow_headers ? extractFields(params.__ow_headers) : ['*'];
     if (retval.body && typeof retval.body === 'object') {
-      retval.body = filter(retval.body, fields);
+      retval.body = filterFields(retval.body, fields);
     }
     return retval;
   };
 }
 
-module.exports = { filter, wrapFields, match };
+module.exports = { filterFields, wrapFields, match };
