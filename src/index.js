@@ -63,7 +63,7 @@ function extract(headers) {
   return ['*']; // allow all
 }
 
-function wrap(fn) {
+function wrapFields(fn) {
   return async (params) => {
     const retval = await fn(params);
     const fields = params && params.__ow_headers ? extract(params.__ow_headers) : ['*'];
@@ -74,4 +74,4 @@ function wrap(fn) {
   };
 }
 
-module.exports = { filter, wrap, match };
+module.exports = { filter, wrapFields, match };

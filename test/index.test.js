@@ -15,7 +15,7 @@
 'use strict';
 
 const assert = require('assert');
-const { filter, match, wrap } = require('../src/index.js');
+const { filter, match, wrapFields } = require('../src/index.js');
 
 const example = {
   foo: {
@@ -73,7 +73,7 @@ describe('Wrap Tests', () => {
       body: longexample,
     });
 
-    const wrapped = wrap(main);
+    const wrapped = wrapFields(main);
 
     const result = await wrapped({
       __ow_headers: {
@@ -92,7 +92,7 @@ describe('Wrap Tests', () => {
       body: longexample,
     });
 
-    const wrapped = wrap(main);
+    const wrapped = wrapFields(main);
 
     const result = await wrapped({
       __ow_headers: {
@@ -109,7 +109,7 @@ describe('Wrap Tests', () => {
       body: longexample,
     });
 
-    const wrapped = wrap(main);
+    const wrapped = wrapFields(main);
 
     const result = await wrapped({
       __ow_headers: {
@@ -126,7 +126,7 @@ describe('Wrap Tests', () => {
       body: longexample,
     });
 
-    const wrapped = wrap(main);
+    const wrapped = wrapFields(main);
 
     const result = await wrapped({ });
 
@@ -139,7 +139,7 @@ describe('Wrap Tests', () => {
       body: 'easy',
     });
 
-    const wrapped = wrap(main);
+    const wrapped = wrapFields(main);
 
     const result = await wrapped({
       __ow_headers: {
