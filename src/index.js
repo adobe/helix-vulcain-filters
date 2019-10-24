@@ -9,9 +9,8 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-const traverse = require('traverse');
-const pointer = require('json-pointer');
 const { match } = require('./match');
 const { filterFields, wrapFields } = require('./fields');
+const { wrapPreload } = require('./preload');
 
-module.exports = { filterFields, wrapFields, match };
+module.exports = { filterFields, wrapFields, match, wrapPreload };
