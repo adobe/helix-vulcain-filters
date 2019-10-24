@@ -1,7 +1,7 @@
 {
-  "name": "@adobe/helix-library",
+  "name": "@adobe/helix-fields-filter",
   "version": "0.0.1",
-  "description": "Example Package",
+  "description": "A vulcain-like fields filter for OpenWhisk web action",
   "main": "src/index.js",
   "scripts": {
     "test": " nyc --reporter=text --reporter=lcov --check-coverage --branches 100 --statements 100 --lines 100 mocha",
@@ -13,15 +13,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/adobe/helix-library"
+    "url": "https://github.com/adobe/helix-fields-filter"
   },
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/adobe/helix-library/issues"
+    "url": "https://github.com/adobe/helix-fields-filter/issues"
   },
-  "homepage": "https://github.com/adobe/helix-library#readme",
-  "dependencies": {},
+  "homepage": "https://github.com/adobe/helix-fields-filter#readme",
+  "dependencies": {
+    "json-pointer": "^0.6.0",
+    "traverse": "^0.6.6"
+  },
   "devDependencies": {
     "@adobe/eslint-config-helix": "1.1.0",
     "@semantic-release/changelog": "3.0.4",

@@ -15,11 +15,140 @@
 'use strict';
 
 const assert = require('assert');
-const index = require('../src/index.js').main;
+const { filter, match, wrap } = require('../src/index.js');
 
-describe('Index Tests', () => {
-  it('index function is present', async () => {
-    const result = await index();
-    assert.equal(result, 'Hello, world.');
+const example = {
+  foo: {
+    bar: 'baz',
+  },
+};
+
+const longexample = {
+  foo: {
+    bar: 'baz',
+    remove: 'me',
+  },
+};
+
+describe('Filter Tests', () => {
+  it('filter function passes', async () => {
+    const result = filter(example, [
+      '/foo/*',
+    ]);
+    assert.deepEqual(result, example);
+  });
+
+  it('filter function filters', async () => {
+    const result = filter(longexample, [
+      '/foo/bar',
+    ]);
+    assert.deepEqual(result, example);
+  });
+
+  it('filter function skips when no filter defined', () => {
+    assert.deepEqual(filter(example), example);
+  });
+});
+
+describe('Match Tests', () => {
+  it('match function rejects', async () => {
+    assert.ok(!match(['foo', 'baz'], '/foo/bar'));
+    assert.ok(!match(['foo', 'bib'], '/foo/bar'));
+    assert.ok(!match(['boo', 'bar'], '/foo/bar'));
+    assert.ok(!match(['foo', 'bar', 'zup'], '/foo/*/zip'));
+  });
+
+  it('match function accepts', async () => {
+    assert.ok(match(['foo', 'baz'], '/foo/baz'));
+    assert.ok(match(['foo', 'bib'], '/foo/*'));
+    assert.ok(match(['boo', 'bar'], '/boo'));
+    assert.ok(match(['foo', 'bar', 'zup'], '/foo/*/zup'));
+  });
+});
+
+describe('Wrap Tests', () => {
+  it('wrap wraps for array headers', async () => {
+    const main = () => ({
+      statusCode: 200,
+      body: longexample,
+    });
+
+    const wrapped = wrap(main);
+
+    const result = await wrapped({
+      __ow_headers: {
+        fields: [
+          '/foo/bar',
+        ],
+      },
+    });
+
+    assert.deepEqual(result.body, example);
+  });
+
+  it('wrap wraps for string headers', async () => {
+    const main = () => ({
+      statusCode: 200,
+      body: longexample,
+    });
+
+    const wrapped = wrap(main);
+
+    const result = await wrapped({
+      __ow_headers: {
+        fields: '/foo/bar',
+      },
+    });
+
+    assert.deepEqual(result.body, example);
+  });
+
+  it('wrap skips for wrong headers', async () => {
+    const main = () => ({
+      statusCode: 200,
+      body: longexample,
+    });
+
+    const wrapped = wrap(main);
+
+    const result = await wrapped({
+      __ow_headers: {
+        yields: '/foo/bar',
+      },
+    });
+
+    assert.deepEqual(result.body, longexample);
+  });
+
+  it('wrap skips for empty headers', async () => {
+    const main = () => ({
+      statusCode: 200,
+      body: longexample,
+    });
+
+    const wrapped = wrap(main);
+
+    const result = await wrapped({ });
+
+    assert.deepEqual(result.body, longexample);
+  });
+
+  it('wrap skips for string responses', async () => {
+    const main = () => ({
+      statusCode: 200,
+      body: 'easy',
+    });
+
+    const wrapped = wrap(main);
+
+    const result = await wrapped({
+      __ow_headers: {
+        fields: [
+          '/foo/bar',
+        ],
+      },
+    });
+
+    assert.deepEqual(result.body, 'easy');
   });
 });
