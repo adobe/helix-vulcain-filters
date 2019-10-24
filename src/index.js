@@ -54,7 +54,7 @@ function filter(obj, fields = []) {
   return obj;
 }
 
-function extract(headers) {
+function extractFields(headers) {
   if (headers.fields && Array.isArray(headers.fields)) {
     return headers.fields;
   } else if (headers.fields) {
@@ -66,7 +66,7 @@ function extract(headers) {
 function wrapFields(fn) {
   return async (params) => {
     const retval = await fn(params);
-    const fields = params && params.__ow_headers ? extract(params.__ow_headers) : ['*'];
+    const fields = params && params.__ow_headers ? extractFields(params.__ow_headers) : ['*'];
     if (retval.body && typeof retval.body === 'object') {
       retval.body = filter(retval.body, fields);
     }
