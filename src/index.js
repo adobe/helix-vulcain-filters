@@ -11,33 +11,7 @@
  */
 const traverse = require('traverse');
 const pointer = require('json-pointer');
-
-/**
- *
- * @param {string[]} path an array of path fragments to match
- * @param {string} pattern a path exression
- * @returns {boolean} true if path matches the expression
- */
-function match(path, pattern) {
-  const patterns = pattern.split('/');
-  return path.map((fragment, i) => {
-    const expr = patterns[i + 1];
-    if (expr === '*') {
-      // the any expression matches anything
-      return true;
-    }
-    if (!expr) {
-      // not having an expression matches, too
-      return true;
-    }
-    if (fragment === expr) {
-      // exact matches are ok as well
-      return true;
-    }
-    // else reject
-    return false;
-  }).reduce((p, v) => p && v, true);
-}
+const { match } = require('./match');
 
 function filter(obj, fields = []) {
   if (fields.filter((exp) => exp === '*').length > 0 || fields.length === 0) {
