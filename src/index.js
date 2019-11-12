@@ -13,4 +13,6 @@ const { match } = require('./match');
 const { filterFields, wrapFields } = require('./fields');
 const { wrapPreload } = require('./preload');
 
-module.exports = { filterFields, wrapFields, match, wrapPreload };
+module.exports = {
+  filterFields, wrapFields, match, wrapPreload,
+};

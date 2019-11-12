@@ -67,7 +67,7 @@ describe('Wrap Tests', () => {
       },
     });
 
-    assert.deepEqual(result.headers.link, '</bar.html>; rel=preload;')
+    assert.deepEqual(result.headers.link, '</bar.html>; rel=preload;');
   });
 
   it('wrap wraps for string headers', async () => {
@@ -82,11 +82,11 @@ describe('Wrap Tests', () => {
 
     const result = await wrapped({
       __ow_headers: {
-        preload: '/foo'
+        preload: '/foo',
       },
     });
 
-    assert.deepEqual(result.headers.link, '</bar.html>; rel=preload;')
+    assert.deepEqual(result.headers.link, '</bar.html>; rel=preload;');
   });
 
   it('wrap wraps for string headers with existing response', async () => {
@@ -96,19 +96,19 @@ describe('Wrap Tests', () => {
         foo: '/bar.html',
       },
       headers: {
-        link: '</assets/jquery.js>; rel=preload; as=script'
-      }
+        link: '</assets/jquery.js>; rel=preload; as=script',
+      },
     });
 
     const wrapped = wrapPreload(main);
 
     const result = await wrapped({
       __ow_headers: {
-        preload: '/foo'
+        preload: '/foo',
       },
     });
 
-    assert.deepEqual(result.headers.link, '</assets/jquery.js>; rel=preload; as=script </bar.html>; rel=preload;')
+    assert.deepEqual(result.headers.link, '</assets/jquery.js>; rel=preload; as=script </bar.html>; rel=preload;');
   });
 
   it('wrap wraps for string headers with existing array response', async () => {
@@ -118,19 +118,19 @@ describe('Wrap Tests', () => {
         foo: '/bar.html',
       },
       headers: {
-        link: ['</assets/jquery.js>; rel=preload; as=script']
-      }
+        link: ['</assets/jquery.js>; rel=preload; as=script'],
+      },
     });
 
     const wrapped = wrapPreload(main);
 
     const result = await wrapped({
       __ow_headers: {
-        preload: '/foo'
+        preload: '/foo',
       },
     });
 
-    assert.deepEqual(result.headers.link, ['</assets/jquery.js>; rel=preload; as=script',  '</bar.html>; rel=preload;'])
+    assert.deepEqual(result.headers.link, ['</assets/jquery.js>; rel=preload; as=script', '</bar.html>; rel=preload;']);
   });
 
   it('wrap skips for missing request headers', async () => {
@@ -138,7 +138,7 @@ describe('Wrap Tests', () => {
       statusCode: 200,
       body: {
         foo: '/bar.html',
-        zip: '/bar.json'
+        zip: '/bar.json',
       },
     });
 
@@ -146,20 +146,20 @@ describe('Wrap Tests', () => {
 
     const result = await wrapped({});
 
-    assert.ok(!result.headers.link)
+    assert.ok(!result.headers.link);
   });
 
   it('wrap skips for non-web response', async () => {
     const main = () => ({
-    foo: '/bar.html',
-    zip: '/bar.json'
+      foo: '/bar.html',
+      zip: '/bar.json',
     });
 
     const wrapped = wrapPreload(main);
 
     const result = await wrapped({});
 
-    assert.ok(!result.headers)
+    assert.ok(!result.headers);
   });
 
   it('wrap skips for empty request headers', async () => {
@@ -167,18 +167,18 @@ describe('Wrap Tests', () => {
       statusCode: 200,
       body: {
         foo: '/bar.html',
-        zip: '/bar.json'
+        zip: '/bar.json',
       },
     });
 
     const wrapped = wrapPreload(main);
 
     const result = await wrapped({
-        __ow_headers: {
-            link: undefined
-        }
+      __ow_headers: {
+        link: undefined,
+      },
     });
 
-    assert.ok(!result.headers.link)
+    assert.ok(!result.headers.link);
   });
 });
