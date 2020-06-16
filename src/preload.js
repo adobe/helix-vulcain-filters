@@ -13,7 +13,6 @@
 const traverse = require('traverse');
 const { match } = require('./match');
 
-
 function findPreload(obj, fields) {
   const preloads = [];
 
