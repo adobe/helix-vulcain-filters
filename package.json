@@ -33,11 +33,11 @@
     "@semantic-release/github": "7.2.0",
     "@semantic-release/npm": "7.0.9",
     "@semantic-release/release-notes-generator": "9.0.1",
-    "ajv": "7.0.2",
+    "ajv": "7.0.3",
     "codecov": "3.8.1",
     "commitizen": "4.2.2",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "7.16.0",
+    "eslint": "7.17.0",
     "eslint-plugin-header": "3.1.0",
     "eslint-plugin-import": "2.22.1",
     "istanbul": "1.1.0-alpha.1",
@@ -47,7 +47,7 @@
     "lodash": "4.17.20",
     "mocha": "8.2.1",
     "nyc": "15.1.0",
-    "semantic-release": "17.3.0"
+    "semantic-release": "17.3.1"
   },
   "lint-staged": {
     "*.js": "eslint"
