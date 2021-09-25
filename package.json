@@ -30,7 +30,7 @@
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/commit-analyzer": "9.0.1",
     "@semantic-release/git": "10.0.0",
-    "@semantic-release/github": "8.0.0",
+    "@semantic-release/github": "8.0.1",
     "@semantic-release/npm": "8.0.0",
     "@semantic-release/release-notes-generator": "10.0.2",
     "ajv": "8.6.3",
@@ -45,7 +45,7 @@
     "junit-report-builder": "3.0.0",
     "lint-staged": "11.1.2",
     "lodash": "4.17.21",
-    "mocha": "9.1.1",
+    "mocha": "9.1.2",
     "nyc": "15.1.0",
     "semantic-release": "18.0.0"
   },
