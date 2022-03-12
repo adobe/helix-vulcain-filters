@@ -33,7 +33,7 @@
     "codecov": "3.8.3",
     "commitizen": "4.2.4",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "8.10.0",
+    "eslint": "8.11.0",
     "eslint-plugin-header": "3.1.1",
     "eslint-plugin-import": "2.25.4",
     "istanbul": "1.1.0-alpha.1",
@@ -41,7 +41,7 @@
     "junit-report-builder": "3.0.0",
     "lint-staged": "12.3.5",
     "lodash": "4.17.21",
-    "mocha": "9.2.1",
+    "mocha": "9.2.2",
     "nyc": "15.1.0",
     "semantic-release": "19.0.2"
   },
