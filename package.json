@@ -39,7 +39,7 @@
     "istanbul": "1.1.0-alpha.1",
     "jsdoc-to-markdown": "7.1.1",
     "junit-report-builder": "3.0.0",
-    "lint-staged": "13.0.0",
+    "lint-staged": "13.0.1",
     "lodash": "4.17.21",
     "mocha": "10.0.0",
     "nyc": "15.1.0",
